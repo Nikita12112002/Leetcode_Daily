@@ -16,9 +16,11 @@ public:
         for(int i=0 ;i<n;i++)
         {
             int count=1;
-            if(s.find(nums[i]-1)==s.end())
+            //checking for one less value in set
+            if(s.find(nums[i]-1)==s.end()) 
             {
                 int c=nums[i];
+                //iterating from one greater value
                 while(s.find(c+1)!=s.end())
                 {
                     c=c+1;
