@@ -7,9 +7,10 @@ public:
         
         for (int i = 0; i < n-2; i++) {
             
-            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) 
+            {
                 
-                int lo = i+1, hi = (int)(num.size())-1, sum = 0 - num[i];
+                int lo = i+1, hi = n-1, sum = 0 - num[i];
                 
                 while (lo < hi) {
                     if (num[lo] + num[hi] == sum) {
