@@ -9,7 +9,15 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        
+        //Approach 1- brute force TC:O(n) SC:O(n)
+
+//use a hash table , traverse linked list 
+// if node is not present in hashtable put it into hashtable 
+// else if present in hashtable it means cycle is preseent
+// if lists is finished while traversing and we get no node that is already
+// present in hashtable it means it doesnot have a cycle .
+
+//Approach 2- Optimal TC:O(n) SC:O(1)
         
         ListNode* fast=head;
         ListNode* slow=head;
