@@ -55,7 +55,7 @@ public:
         
 //         return NULL;
         
-        //best- TC:O(m) SC:O(1)
+        //best- TC:O(2m) SC:O(1)
         
         if(head1==NULL || head2==NULL)
             return NULL;
