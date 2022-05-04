@@ -13,6 +13,6 @@ public:
                 count=0;
             }
         }
-        return max(maxi,count);
+        return max(maxi,count); // case - 1 1 0 1 1 1 
     }
 };
