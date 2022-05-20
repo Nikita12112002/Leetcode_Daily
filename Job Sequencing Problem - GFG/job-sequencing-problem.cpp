@@ -39,14 +39,20 @@ class Solution
     { 
         // your code here
         vector<int>ans;
+        
+        // sort the array acc to descending order of profit.
         sort(arr,arr+n,comp);
         
         int maxi=0 , count=0;
+        
+        // find out the maximum deadline among all the jobs
         for(int i=0 ;i<n;i++)
         {
              maxi=max(maxi,arr[i].dead);
         }
         
+        // make an array of size equal to max 
+        //deadline and intialize it with one
         int a[maxi];
         
         for(int i=1 ;i<=maxi ;i++)
@@ -54,6 +60,9 @@ class Solution
             a[i]=-1;
         }
         int profit =0;
+        
+        // major portion
+      
         for(int i=0 ;i<n;i++)
         {
             for(int j=arr[i].dead ; j>0 ;j--)
