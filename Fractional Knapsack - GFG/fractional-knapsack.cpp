@@ -30,6 +30,8 @@ class Solution
     double fractionalKnapsack(int W, Item arr[], int n)
     {
         // Your code here
+        
+        // example- sample test case1.
        
         sort(arr,arr+n,comp);
         
@@ -43,7 +45,11 @@ class Solution
                 weight = weight+arr[i].weight;
                 profit= profit+arr[i].value;
             }
-            
+           
+           // when i=2
+           // 30kg---->120 profit
+           //1kg------>120/30 profit
+           // rem 20 kg ----->(120/30)*20
             else
             {
                 int rem = W-weight;
