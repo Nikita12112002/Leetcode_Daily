@@ -33,10 +33,10 @@ class Solution
                 pages+=arr[i];          //NO ISSUES JUST KEEP ON ADDING THE BOOKS
             }
         }
-        if(allocatedStudents>k)         //THE BOOKS ASSIGNMENT IS DONE TO K STUDENTS ONLY IF NOT THEN RETURN FALSE 
-            return false;
+        if(allocatedStudents<=k)         //THE BOOKS ASSIGNMENT IS DONE TO K STUDENTS ONLY IF NOT THEN RETURN FALSE 
+            return true;
             
-        return true;                    //ELSE RETURN TRUE
+        return false;                    //ELSE RETURN TRUE
     }
     
     int findPages(int arr[], int n, int k) 
