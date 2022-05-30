@@ -35,13 +35,21 @@ class Solution
     {
         if(k>n)                 //CHECK WHETHER K>N THEN RETURN -1
             return -1;
-        int lo=arr[0];  
-        int hi=0;
-        int res=-1;
-        for(int i=0;i<n;i++){       //ASSIGN THE MINIMUM POSSIBLE VALUE TO LO AND SUM OF THE ARRAY TO HI
-            hi+=arr[i];
-            lo=min(lo,arr[i]);
+          int sum=0;  
+       sort(arr,arr+n);
+        int lo=arr[0];
+        
+        for(int i=0 ;i<n ;i++)
+        {
+            sum=sum+arr[i];
         }
+        
+        int hi=sum;
+        int res=-1;
+        // for(int i=0;i<n;i++){       //ASSIGN THE MINIMUM POSSIBLE VALUE TO LO AND SUM OF THE ARRAY TO HI
+        //     hi+=arr[i];
+        //     lo=min(lo,arr[i]);
+        // }
         while(lo<=hi){                  //APPLY BINARY SEARCH
             int mid=(lo+hi)>>1;         //CALCULATE THE MIDDLE VALUE
             if(allocationPossible(arr,mid,k,n)){        //CHECK WHETHER ALLOCATION OF BOOK IS POSSIBLE OR NOT
