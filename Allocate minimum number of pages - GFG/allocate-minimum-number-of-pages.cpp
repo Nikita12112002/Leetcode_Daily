@@ -36,20 +36,20 @@ class Solution
         if(k>n)                 //CHECK WHETHER K>N THEN RETURN -1
             return -1;
           int sum=0;  
-       sort(arr,arr+n);
+    //   sort(arr,arr+n);
+        
+        
+    //     for(int i=0 ;i<n ;i++)
+    //     {
+    //         sum=sum+arr[i];
+    //     }
         int lo=arr[0];
-        
-        for(int i=0 ;i<n ;i++)
-        {
-            sum=sum+arr[i];
-        }
-        
-        int hi=sum;
+        int hi=0;
         int res=-1;
-        // for(int i=0;i<n;i++){       //ASSIGN THE MINIMUM POSSIBLE VALUE TO LO AND SUM OF THE ARRAY TO HI
-        //     hi+=arr[i];
-        //     lo=min(lo,arr[i]);
-        // }
+        for(int i=0;i<n;i++){       //ASSIGN THE MINIMUM POSSIBLE VALUE TO LO AND SUM OF THE ARRAY TO HI
+            hi+=arr[i];
+            lo=min(lo,arr[i]);
+        }
         while(lo<=hi){                  //APPLY BINARY SEARCH
             int mid=(lo+hi)>>1;         //CALCULATE THE MIDDLE VALUE
             if(allocationPossible(arr,mid,k,n)){        //CHECK WHETHER ALLOCATION OF BOOK IS POSSIBLE OR NOT
