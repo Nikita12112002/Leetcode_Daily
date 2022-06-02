@@ -16,9 +16,9 @@ public:
         
         for (int i = 0; i < s.size(); i++) 
         {
-            if (m[s[i]] < m[s[i+1]]) 
-                ans -= m[s[i]];
-            
+            if (m[s[i]] < m[s[i+1]])  // MCMXCIV
+                ans -= m[s[i]];       // 1000 100 1000 10 100 1 5
+                                      // now check i and i+1;
             else 
             { 
                 ans += m[s[i]];
