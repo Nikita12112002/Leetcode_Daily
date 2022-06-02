@@ -7,7 +7,7 @@ public:
     
     string temp="";
     string ans="";
-    int count=0;
+    int count_spaces=0;
     //Iterate the string and keep on adding to form a word
     //If empty space is encountered then add the current word to the result
         
@@ -17,17 +17,17 @@ public:
         if (ch != ' ') 
         {
             temp += ch;
-            count=0;
+            count_spaces=0;
         } 
         else if (ch == ' ')
         {
-             count++;
-            if (ans!="" && count<=1) 
+             count_spaces++;
+            if (ans!="" && count_spaces<=1) 
             {
                 ans = temp + " " + ans;
                 
             }
-            else if(ans==""&&count<=1)
+            else if(ans==""&&count_spaces<=1)
                 ans = temp;
         
             temp = "";
