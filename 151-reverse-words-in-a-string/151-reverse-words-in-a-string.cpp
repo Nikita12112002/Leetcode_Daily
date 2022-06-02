@@ -8,8 +8,7 @@ public:
     string temp="";
     string ans="";
     int count_spaces=0;
-    //Iterate the string and keep on adding to form a word
-    //If empty space is encountered then add the current word to the result
+    
         
     while (left <= right) 
     {
@@ -17,17 +16,17 @@ public:
         if (ch != ' ') 
         {
             temp += ch;
-            count_spaces=0;
+            count_spaces=0;  // as soon as we will encounter a word we will do count=0 
         } 
         else if (ch == ' ')
         {
              count_spaces++;
-            if (ans!="" && count_spaces<=1) 
+            if (ans!="" && count_spaces<=1) // if there is single space b/w words add the word in ans
             {
                 ans = temp + " " + ans;
                 
             }
-            else if(ans==""&&count_spaces<=1)
+            else if(ans==""&&count_spaces<=1) // handles leading spaces
                 ans = temp;
         
             temp = "";
