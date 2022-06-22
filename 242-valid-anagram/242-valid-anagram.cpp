@@ -10,16 +10,10 @@ public:
         for(int i=0 ;i<s.length();i++)
         {
             m[s[i]]++;
+            m[t[i]]--;
         }
         
-        for(int i=0 ;i<t.length() ;i++)
-        {
-            if(m[t[i]]>0)
-                
-                m[t[i]]--;
-            
-        }
-        
+       
         for(auto it:m)
         {
             if(it.second>0)
