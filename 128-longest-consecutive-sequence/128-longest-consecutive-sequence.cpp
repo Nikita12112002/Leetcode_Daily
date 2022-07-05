@@ -1,7 +1,7 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        
+       
         //TC:O(n)+O(n)+O(n)=O(3n)
         //sc:O(n)
         
