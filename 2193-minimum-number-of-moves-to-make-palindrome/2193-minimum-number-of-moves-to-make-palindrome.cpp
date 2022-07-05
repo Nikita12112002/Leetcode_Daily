@@ -1,6 +1,8 @@
 class Solution {
 public:
     int minMovesToMakePalindrome(string s) {
+    
+        //concept-->either make left half equal to right half or right half equal to left half
         
         int n = s.length();
         
