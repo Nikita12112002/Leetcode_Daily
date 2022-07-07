@@ -73,11 +73,13 @@ public:
             }
             else
             {
+                
+                
                 if(s1[i-1] == s3[i+j-1])
                  dp[i][j] = dp[i-1][j] ;
                 
                 if(s2[j-1] == s3[i+j-1])
-                dp[i][j] = dp[i][j] || dp[i][j-1];
+                dp[i][j] =  dp[i][j] || dp[i][j-1];
             }
                 
                  
