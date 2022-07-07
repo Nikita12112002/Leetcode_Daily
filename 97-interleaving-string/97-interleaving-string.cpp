@@ -43,6 +43,10 @@ public:
         
         bool dp[n+1][m+1];
         
+                memset(dp,0,sizeof(dp));
+        
+
+        
       for(int i=0; i<n+1; i++)
       {
         for(int j=0; j<m+1; j++)
@@ -68,8 +72,16 @@ public:
                     dp[i][j]=false;
             }
             else
+            {
+                if(s1[i-1] == s3[i+j-1])
+                 dp[i][j] = dp[i-1][j] ;
                 
-                dp[i][j] = dp[i-1][j] && s1[i-1] == s3[i+j-1]  || dp[i][j-1] && s2[j-1] == s3[i+j-1] ;
+                if(s2[j-1] == s3[i+j-1])
+                dp[i][j] = dp[i][j] || dp[i][j-1];
+            }
+                
+                 
+            
         }
           
       }
