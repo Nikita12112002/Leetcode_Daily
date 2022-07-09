@@ -163,7 +163,7 @@ class Solution {
             time++;
             
         }
-        return time++;
+        return time;
     }
 };
 
