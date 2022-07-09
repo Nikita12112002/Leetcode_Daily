@@ -1,5 +1,5 @@
 # Burning Tree
-## Hard 
+##  Hard 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a binary tree and a&nbsp;node called target. Find the minimum time required to burn the complete binary tree if the target is set on fire.&nbsp;It is known that in 1 second all nodes connected to a given node get burned. That is its left child, right child, and parent.</span></p>
 
