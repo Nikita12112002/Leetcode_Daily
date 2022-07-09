@@ -3,25 +3,23 @@ public:
     int maxResult(vector<int>& nums, int k)
     {
         int n=nums.size();
-        vector<int>ans(n);
-        priority_queue<pair<int,int>> pq;
         
-        for(int i=n-1 ; i>=0 ; i--)
+        deque<int>q;
+        vector<int>dp(n);
+        dp[n-1]=nums[n-1];
+        q.push_back(n-1);
+        
+        for(int i=n-2 ;i>=0 ;i--)
         {
-            while(pq.size() && pq.top().second>i+k)
-                pq.pop();
+            if(q.front()-i>k)
+                q.pop_front();
             
-            ans[i]=nums[i];
+            dp[i]=nums[i]+dp[q.front()];
             
-            if(!pq.empty())
-            {
-                ans[i]=ans[i]+pq.top().first;
-            }
-           
-            
-            pq.push({ans[i], i});
+            while(q.size()&& dp[q.back()]<dp[i])
+                q.pop_back();
+            q.push_back(i);
         }
-        
-        return ans[0];
+        return dp[0];
     }
 };
