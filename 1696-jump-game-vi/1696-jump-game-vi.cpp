@@ -17,8 +17,7 @@ public:
             {
                 ans[i]=ans[i]+pq.top().first;
             }
-            else
-                ans[i]=ans[i]+0;
+           
             
             pq.push({ans[i], i});
         }
