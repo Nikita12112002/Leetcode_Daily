@@ -11,29 +11,37 @@
  */
 class BSTIterator {
 public:
-    stack<TreeNode*> s;
+    
+    stack<TreeNode*>st;
     BSTIterator(TreeNode* root) {
-        partialInorder(root);
+        
+        pushAll(root);
+        
     }
     
-    void partialInorder(TreeNode* root){
-        while(root != NULL){
-            s.push(root);
-            root = root->left;
+    void pushAll(TreeNode* root)
+    {
+        while(root!=NULL)
+        {
+            st.push(root);
+            root=root->left;
         }
     }
-    
     int next() {
-        TreeNode* top = s.top();
-        s.pop();
-        partialInorder(top->right);
-        return top->val;
+        
+        TreeNode* node = st.top();
+        st.pop();
+        pushAll(node->right);
+        return node->val;
     }
     
     bool hasNext() {
-        return !s.empty();
+        
+        return !st.empty();
+        
     }
 };
+
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator* obj = new BSTIterator(root);
