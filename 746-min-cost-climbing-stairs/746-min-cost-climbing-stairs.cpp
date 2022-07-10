@@ -2,12 +2,9 @@ class Solution {
 public:
     int minCostClimbingStairs(vector<int>& costs) {
         
-        //space optimization code through dp. 
-        
         int n=costs.size() ;
-        int prev1=costs[0],prev2=costs[1] ,mini=0;
-        
-        
+        vector<int>dp(n+1);
+        dp[0]=costs[0], dp[1]=costs[1];
         
         if(n==0)
             return 0;
@@ -17,10 +14,8 @@ public:
         
         for(int i=2 ;i<n;i++)
         {
-            mini=min(prev1,prev2)+costs[i];
-            prev1=prev2;
-            prev2=mini;
+           dp[i]= costs[i] + min(dp[i-1],dp[i-2]);
         }
-        return min(prev1,prev2);
+        return min(dp[n-1],dp[n-2]);
     }
 };
