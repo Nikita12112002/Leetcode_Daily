@@ -10,33 +10,47 @@
  * };
  */
 class Solution {
+
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         
-        vector<int>pre;
-        stack<TreeNode*>st;
-        st.push(root);
+             vector<int>preorder;
+        TreeNode* curr = root;
         
-        if(root==NULL)
-            return pre;
-        
-        while(!st.empty())
+        while(curr!=NULL)
         {
-           auto  node = st.top();
-            st.pop();
+            if(curr->left==NULL)
+            {
+                preorder.push_back(curr->val);
+                curr=curr->right;
+            }
             
-            pre.push_back(node->val);  
-            
-            if(node->right!=NULL)
-                st.push(node->right);
-            
-            if(node->left!=NULL)
-                st.push(node->left);
+            else
+            {
+                TreeNode* prev = curr->left;
                 
-              
+                while(prev->right!=NULL && prev->right!=curr)
+                    prev=prev->right;
+                
+                if(prev->right==NULL)  // making thread
+                {
+                  prev->right=curr;    // thread is made by connecting rightmost node to the curr root node
+                preorder.push_back(curr->val);
+                    curr=curr->left;
+                }
+                
+                else  // destroying threads
+                {
+                    prev->right=NULL ; //destroyed;
+                  
+                    curr=curr->right;
+                }
+            }
         }
+        return preorder;
         
-        return pre;
         
     }
 };
+        
+    
