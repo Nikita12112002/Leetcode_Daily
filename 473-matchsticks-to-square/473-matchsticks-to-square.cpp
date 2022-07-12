@@ -34,7 +34,7 @@ public:
             int j=i-1;
             while(j>=0)
             {
-                if(sides[j]==sides[i])
+                if(sides[j]==sides[i]) //if we have already computed same array as before we will break (dp is used ..check previous computed things)
                     break;
                 j--;
             }
