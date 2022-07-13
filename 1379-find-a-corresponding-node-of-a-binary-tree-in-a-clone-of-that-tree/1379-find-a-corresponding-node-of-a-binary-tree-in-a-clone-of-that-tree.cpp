@@ -13,16 +13,30 @@ public:
     TreeNode* ans;
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
         
-        if(cloned==NULL)
+//         if(cloned==NULL)
+//             return NULL;
+        
+//         if(cloned->val == target->val)
+//            ans= cloned;
+        
+//         getTargetCopy(original,cloned->left,target);
+//         getTargetCopy(original,cloned->right,target);
+        
+//         return ans;
+ 
+// folllow up: if there are duplicate values you need to check addresses , at that time above code will not work
+        if(original==NULL)
             return NULL;
         
-        if(cloned->val == target->val)
-           ans= cloned;
+        if(original==target)
+            return cloned;
         
-        getTargetCopy(original,cloned->left,target);
-        getTargetCopy(original,cloned->right,target);
+      TreeNode* left = getTargetCopy(original->left,cloned->left,target);
+       TreeNode* right = getTargetCopy(original->right,cloned->right,target);
         
-        return ans;
+        if(left==NULL)
+            return right;
         
+        return left;
     }
 };
