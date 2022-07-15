@@ -12,7 +12,11 @@ class Solution
     {
         // Code here
       
-    	vector<int> dis(n+1,INT_MAX); 
+   vector<int>dis(n+1);
+    for(int i=0 ;i<=n;i++)
+    {
+        dis[i]=INT_MAX;
+    }
 	
      dis[src]=0;
     priority_queue<pair<int,int> , vector<pair<int,int>>,greater<pair<int,int>>>pq;
