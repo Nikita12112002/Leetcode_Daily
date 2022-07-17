@@ -5,7 +5,7 @@ public:
     {
         if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size())
         {
-            p++;
+            p++;// counting boundary of those cells whose boundary is either out of bound or is a water cell
             return ;
         }
         
