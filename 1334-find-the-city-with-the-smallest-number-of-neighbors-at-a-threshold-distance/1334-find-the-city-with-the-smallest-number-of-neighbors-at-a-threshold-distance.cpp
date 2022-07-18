@@ -46,7 +46,7 @@ public:
 	                if(dis[i][k]==INT_MAX or dis[k][j]==INT_MAX)
 	                continue;
 	                
-	                if(dis[i][j]==-1)
+	                if(dis[i][j]==INT_MAX)
 	                dis[i][j] = dis[i][k] + dis[k][j];
 	                
 	                else 
