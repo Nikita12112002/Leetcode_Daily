@@ -1,57 +1,42 @@
 class Solution {
 public:
-    
-    void topoSort(vector<int>adj[] , vector<int>&vis , int node , stack<int>&st)
-    {
+    bool dfs(vector<int>adj[] , vector<int>&vis , int node , int n , vector<int>&dfsvis)
+  {
         vis[node]=1;
+        dfsvis[node]=1;
         for(auto it:adj[node])
         {
             if(vis[it]==0)
-                topoSort(adj,vis,it,st);
+            {
+                if(dfs(adj,vis,it,n ,dfsvis))
+                    return true;
+            }
+            else if(dfsvis[it]==1)
+                return true;
+                
         }
-        
-        st.push(node);
-        
+        dfsvis[node]=0;
+        return false;
     }
     bool canFinish(int numCourses, vector<vector<int>>& pre) {
         
-        int n = numCourses;
-         vector<int>adj[n];
-        vector<int>vis(n,0);
-        
-        for(auto it:pre)
-        {
-            adj[it[1]].push_back(it[0]);
-        }
-        stack<int>st;
-        
+       int n = numCourses; 
+       vector<int>adj[n];
+       vector<int>vis(n,0);
+       vector<int>dfsvis(n,0);
+       for(auto it:pre)
+       {
+           adj[it[1]].push_back(it[0]);
+       }
+    
         for(int i=0 ;i<n ;i++)
         {
-            if(vis[i]==0)
+            if(!vis[i])
             {
-                topoSort(adj,vis,i,st);
-            }
-        }
-        
-        vector<int> ans(numCourses,-1);
-        int index=0;
-        while(!st.empty())
-        {
-            int t=st.top();
-            st.pop();
-            ans[t]=index;
-            index++;
-        }
-        
-        for(int i=0 ;i<n ;i++)
-        {
-            for(auto it:adj[i])
-            {
-                if(ans[i]>=ans[it])
-                    return false;
+              if(dfs(adj,vis,i,n,dfsvis))
+                  return false;
             }
         }
         return true;
     }
 };
-
