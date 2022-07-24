@@ -12,5 +12,15 @@ public:
             dp[i]=dp[i-1]+dp[i-2];
         }
         return dp[n];
+        
+        int prev1=0 ,prev2=1,curr;
+        
+        if(n==0)
+            return 0;
+        for(int i=2 ;i<=n ;i++)
+        {
+            curr=prev1+prev2;
+        }
+        return curr;
     }
 };
