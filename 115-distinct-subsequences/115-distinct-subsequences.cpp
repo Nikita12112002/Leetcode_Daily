@@ -1,6 +1,8 @@
 class Solution {
 public:
     int mod=1e9+7;
+    
+    // it is not mentioned in the ques to do mod with 1e9+7 but we did bcoz the ans was overflowing and cant be handled by int or long datatypes. 
    int numDistinct(string s, string t) {
         
         int n= s.length();
