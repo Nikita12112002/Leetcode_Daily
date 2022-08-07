@@ -7,7 +7,7 @@ public:
        
         if(dp[i]!=-1)
             return dp[i];
-        bool res=0;
+        
         if(i+1<n && nums[i]==nums[i+1])
         {
               if(dfs(nums,i+2,dp,n) )return true;
