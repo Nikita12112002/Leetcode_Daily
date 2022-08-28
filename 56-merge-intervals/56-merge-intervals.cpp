@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // brute force 
     vector<vector<int>> merge(vector<vector<int>>& arr) {
         
          int n = arr.size();
@@ -23,7 +24,7 @@ public:
             }
         }
     
-        end = max(end, arr[i][1]);
+        // end = max(end, arr[i][1]);
 
        res.push_back(start);
        res.push_back(end);
