@@ -44,7 +44,7 @@ public:
                 ListNode *node= new ListNode(temp1->val);
                 node->next= NULL;
                 dummy->next = node;
-                temp3 = dummy->next;
+                temp3 = node;
                 prev = node;
                 temp1 = temp1->next;
                  
@@ -56,7 +56,7 @@ public:
                 ListNode *node= new ListNode(temp2->val);
                 node->next= NULL;
                 dummy->next=node;
-                temp3 = dummy->next;
+                temp3 = node;
                 prev = node;
                 temp2 = temp2->next;
                
