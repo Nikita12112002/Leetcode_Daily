@@ -12,35 +12,105 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         
-       //creating a new node approach will take extra space.
-        //Below is the approach which is in place;
+        ListNode *temp1=l1 , *temp2=l2  ;
+        ListNode *temp3 = new ListNode();
         
-        ListNode *head,*temp=NULL;
+        ListNode *dummy = new ListNode();
+        ListNode *prev;
         
-        if(l1==NULL)
-            return l2;
-        
-        if(l2==NULL)
-            return l1;
-        
-        if(l1->val>l2->val)
-            swap(l1,l2);
-        
-        head=l1;
-        while(l1!=NULL && l2!=NULL)
+        if(l1==NULL && l2 !=NULL)
         {
-            temp=NULL;
-            while(l1!=NULL && l1->val<=l2->val)
-            {
-                temp=l1;
-                l1=l1->next;
-            }
-            
-            temp->next=l2;
-            swap(l1,l2);
+            return l2;
         }
         
-     
-        return head;
+       else if(l1!=NULL && l2==NULL)
+        {
+            return l1;
+        }
+        
+        else if(l1==NULL && l2==NULL)
+        {
+            return l1;
+        }
+        
+        else{
+        
+        while(temp1!=NULL && temp2!=NULL)
+        {
+            if(dummy->next==NULL)
+            {
+                if(temp1->val <= temp2->val)
+             {
+                ListNode *node= new ListNode(temp1->val);
+                node->next= NULL;
+                dummy->next = node;
+                temp3 = dummy->next;
+                prev = node;
+                temp1 = temp1->next;
+                 
+               
+            }
+            
+            else
+            {
+                ListNode *node= new ListNode(temp2->val);
+                node->next= NULL;
+                dummy->next=node;
+                temp3 = dummy->next;
+                prev = node;
+                temp2 = temp2->next;
+               
+            }
+                       
+    }
+            
+    else{
+            if(temp1->val <= temp2->val)
+            {
+                ListNode *node= new ListNode(temp1->val);
+                node->next= NULL;
+                dummy->next = node;
+                prev->next = node;
+                prev = node;
+                temp1 = temp1->next;
+                 
+               
+            }
+            
+            else
+            {
+                ListNode *node= new ListNode(temp2->val);
+                node->next= NULL;
+                dummy->next=node;
+                prev->next = node;
+                prev = node;
+                temp2 = temp2->next;
+               
+            }
+        }
+        }
+        
+       while(temp1!=NULL)
+       {
+                ListNode *node= new ListNode(temp1->val);
+                node->next= NULL;
+                dummy->next=node;
+                prev->next = node;
+                prev = node;
+                temp1 = temp1->next;
+       }
+        
+        while(temp2!=NULL)
+        {
+            ListNode *node= new ListNode(temp2->val);
+                node->next= NULL;
+                dummy->next=node;
+                prev->next = node;
+                prev = node;
+                temp2 = temp2->next;
+        }
+        
+       return temp3 ;
+        }
     }
 };
