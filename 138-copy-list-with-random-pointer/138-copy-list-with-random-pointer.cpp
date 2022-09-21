@@ -18,44 +18,36 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) {
         
-        Node *itr=head;
-        Node *front=head;
-        // creates a deep copy nodes and updating the pointers
-        while(itr!=NULL)
+        Node* temp=head;
+        while(temp!=NULL)
         {
-            front =itr->next;
-            Node *copy=new Node(itr->val);
-            itr->next=copy;
-            copy->next=front;
-            itr=front;
+            Node* newnode = new Node(temp->val);
+            newnode->next=temp->next;
+            temp->next=newnode;
+            temp=temp->next->next;
         }
         
-         // set up the random pointer of deep copy nodes
+        temp=head;
         
-        itr=head;
-        while(itr!=NULL)
+        while(temp!=NULL)
         {
-            if(itr->random!=NULL)
-            {
-                itr->next->random=itr->random->next;
-            }
-            
-            itr=itr->next->next;
+            if(temp->random!=NULL)
+              temp->next->random = temp->random->next;
+            temp=temp->next->next;
         }
         
-    // restore the original pointers and also make connection in deep copy list.
-        itr=head;
-        Node *dummy=new Node(0);
-        Node *temp=dummy;
+        Node* dummy = new Node(0);
+        Node* itr=head ,*fast;
+        temp=dummy;
+        
         
         while(itr!=NULL)
         {
-            front=itr->next->next;
-            temp->next=itr->next;
-            itr->next=front;
-            temp=temp->next;
-            itr=front;
-            
+              fast=itr->next->next;
+              temp->next=itr->next;
+              itr->next=fast;
+              itr=fast;
+              temp=temp->next;
         }
         
         return dummy->next;
