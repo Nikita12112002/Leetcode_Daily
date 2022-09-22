@@ -16,31 +16,35 @@ public:
             return head;
         if(k==0)
             return head;
-        
         int count=0;
-        ListNode *temp=head , *prev;
-        
+        ListNode* temp=head;
+        ListNode* prev;
         while(temp!=NULL)
         {
             count++;
             if(temp->next==NULL)
-            {
                 prev=temp;
-            }
             temp=temp->next;
         }
         
         prev->next=head;
-        k=k%count;  // taking remainder
-        k=count-k;
         
-        while(k--)
+            if(k>count)
+              k=k%count;
+            k=count-k;
+        
+      
+        while(k>0)
         {
+            k--;
             prev=prev->next;
         }
         
-        head=prev->next;
+        ListNode* node = prev->next;
+        head=node;
         prev->next=NULL;
-       return head; 
+        
+        return head;
+            
     }
 };
