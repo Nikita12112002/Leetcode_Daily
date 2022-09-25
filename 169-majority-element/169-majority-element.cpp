@@ -7,8 +7,11 @@ public:
         for(int i=0 ;i<nums.size() ;i++)
         {
             if(count==0)
+            {
                 ele=nums[i];
-            if(nums[i]==ele)
+                count++;
+            }
+            else if(nums[i]==ele)
                 count++;
             else
                 count--;
