@@ -7,9 +7,9 @@ public:
         
         for(int i=0 ;i<nums.size();i++)
         {
-               if(nums[i]==ele1)
+            if(nums[i]==ele1)
                 c1++;
-                else if(nums[i]==ele2)
+            else if(nums[i]==ele2)
                  c2++;
            else if(c1==0)
             {
