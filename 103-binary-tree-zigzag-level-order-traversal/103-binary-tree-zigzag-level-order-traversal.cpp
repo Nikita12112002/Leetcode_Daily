@@ -13,49 +13,43 @@ class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         
-        vector<vector<int>>zig;
         queue<TreeNode*>q;
+        vector<vector<int>>ans;
         q.push(root);
-        int flag=1;
+        int flag=0;
         int index;
         
         if(root==NULL)
-            return zig;
-        
+            return ans;
         while(!q.empty())
         {
-            auto sz = q.size();
-             
-            vector<int>zag(sz);
+           int sz = q.size();
            
-            for(int i=0 ; i<sz ;i++)
+            vector<int>res(sz);
+            for(int i=0 ;i<sz ;i++)
             {
-                 auto node= q.front();
+                auto node = q.front();
                 q.pop();
+                if(flag==0)
+                    index=i;
                 
-                if(flag==1)
-                     index = i;
                 else
-                     index = sz-1-i;
+                    index=sz-1-i;
                 
-                zag[index]=node->val;
+                res[index]=node->val;
                 
-                if(node->left!=NULL)
+                if(node->left)
                     q.push(node->left);
-                
-                if(node->right!=NULL)
+                if(node->right)
                     q.push(node->right);
             }
             
-                if(flag==1)
-                    flag=0;
-                else
-                    flag=1;
-                
-              
-            zig.push_back(zag);
+            if(flag==0)
+                flag=1;
+            else
+                flag=0;
+            ans.push_back(res);
         }
-        
-       return zig;
+       return ans; 
     }
 };
