@@ -11,28 +11,31 @@
  */
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
-       
-        vector<int>res;
-          if(root==NULL)
-            return res;
-        right(root,0,res);
-        return res;
-        
-    }
     
-    void right(TreeNode* root ,int level , vector<int>&res)
+    void dfs(TreeNode* root , vector<int>&res , int level)
     {
-      
         if(root==NULL)
-            return;
+            return ;
         
         if(res.size()==level)
             res.push_back(root->val);
         
-        right(root->right , level+1 , res);
-        right(root->left , level+1 , res);
+        dfs(root->right,res,level+1);
+        dfs(root->left , res,level+1);
+        
+        return;
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        
+         vector<int>res;
+       if(root==NULL)
+           return res;
+        
        
+        
+        dfs(root,res,0);
+        
+        return res;
         
     }
 };
