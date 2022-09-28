@@ -12,7 +12,7 @@ public:
       
       int check=A.find(B); //will find the B substring
       
-        if(check>A.size())return false; //if the position is greater then size
+        if(check>=A.size())return false; //if the position is greater then size
       
   return true;
         
