@@ -11,42 +11,37 @@
  */
 class Solution {
 public:
-    long long findLeftHeight(TreeNode* node)
-    {
-        long long l=0;
-        while(node)
-        {
-            l++;
-            node=node->left;
-        }
-        return l;
-    }
     
-     long long findRightHeight(TreeNode* node)
+    int findleftheight(TreeNode* root)
     {
-        long long r=0;
-        while(node)
+        int count=0;
+        while(root!=NULL)
         {
-            r++;
-            node=node->right;
+            count++;
+            root=root->left;
         }
-        return r;
+        return count;
     }
-    
+    int findrightheight(TreeNode* root)
+    {
+        int count=0;
+        while(root!=NULL)
+        {
+            count++;
+            root=root->right;
+        }
+        return count;
+    }
     int countNodes(TreeNode* root) {
         
         if(root==NULL)
             return 0;
         
-        long lh = findLeftHeight(root);
-        long rh = findRightHeight(root);
+        int lh = findleftheight(root);
+        int rh = findrightheight(root);
         
         if(lh==rh)
-            return (1<<lh)-1;  // 2 power lh -1;
-        
-        return 1 + countNodes(root->left) + countNodes(root->right);
-        
-        
-        
+            return (1<<lh)-1;
+        return 1+countNodes(root->left)+countNodes(root->right);
     }
 };
