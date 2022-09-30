@@ -18,35 +18,36 @@ public:
         
         queue<pair<TreeNode*,long long>>q;
         q.push({root,0});
-        int ans=0 , first ,last;
+        long long maxi=0;
         
         while(!q.empty())
         {
-            long long sz = q.size();
+            auto node = q.front().first;
             long long mini = q.front().second;
+             
+            long long sz=q.size();
+            long long first , last;
             
-            for(int i=0 ; i<sz ;i++)
+            for(int i=0 ;i<sz ;i++)
             {
+                auto node = q.front().first;
                 long long index = q.front().second-mini;
-                auto cur=q.front().first;
                 q.pop();
                 
                 if(i==0)
-                   first=index;
-                
+                     first=index;
                 if(i==sz-1)
-                    last=index;
+                     last = index;
                 
-                if(cur->left)
-                    q.push({cur->left,index*2+1});
+                if(node->left)
+                    q.push({node->left,index*2+1});
                 
-                if(cur->right)
-                    q.push({cur->right,index*2+2});
+                if(node->right)
+                    q.push({node->right,index*2+2});
             }
             
-            ans = max(ans,last-first+1);
-            
+            maxi=max(maxi,last-first+1);
         }
-       return ans; 
+        return maxi;
     }
 };
