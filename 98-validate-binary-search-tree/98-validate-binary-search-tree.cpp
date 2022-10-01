@@ -11,13 +11,8 @@
  */
 class Solution {
 public:
-    bool isValidBST(TreeNode* root) {
-        
-        return Validate(root, LONG_MIN, LONG_MAX );
-        
-    }
     
-    bool Validate(TreeNode* root ,long long min , long long max)
+    bool dfs(TreeNode* root , long min , long max)
     {
         if(root==NULL)
             return true;
@@ -25,7 +20,13 @@ public:
         if(root->val>=max || root->val<=min)
             return false;
         
-     return  Validate(root->left , min , root->val) && Validate(root->right , root->val , max);
+        return dfs(root->left,min,root->val)&&dfs(root->right,  root->val,max);
+    }
+    bool isValidBST(TreeNode* root) {
         
+        if(root==NULL)
+            return true;
+        
+        return dfs(root,LONG_MIN , LONG_MAX);
     }
 };
