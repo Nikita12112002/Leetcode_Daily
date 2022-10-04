@@ -15,11 +15,11 @@ public:
         priority_queue<int,vector<int>,greater<int>> pq; //min heap
         long sum=0;
         long  res=0;
-        for(auto [eff,speed] : perf)
+        for(int i=0 ;i<perf.size();i++)
         {
-            sum+=speed;
+            sum+=perf[i].second;
 			//push the current speed to the pq
-            pq.push(speed);
+            pq.push(perf[i].second);
             if(pq.size()>k)
             {
                 //remove the smallest speed
@@ -27,7 +27,7 @@ public:
                 pq.pop();
             }
 			//since eff is the currents small efficiency 
-            res=max(res,sum*eff);
+            res=max(res,sum*perf[i].first);
         }
         return res % (int)(1e9+7);
     
