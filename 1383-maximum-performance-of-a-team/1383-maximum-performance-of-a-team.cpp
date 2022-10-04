@@ -1,36 +1,39 @@
 class Solution {
 public:
+    int mod=10000000007;
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
         
-         vector<pair<int,int>> perf(n);
+        vector<pair<int,int>>v;
+        priority_queue<int,vector<int>,greater<int>>q2;
+        
+        long sum=0;
+        long  maxi=0;
+        
         for(int i=0;i<n;i++)
         {
-            perf[i]={efficiency[i],speed[i]};
+            v.push_back({efficiency[i],speed[i]});
         }
+           sort(v.rbegin(), v.rend());
         
-        //sort the perf in descending order
-        sort(perf.rbegin(),perf.rend());
-        
-        //priority queue to get the smallest sum 
-        priority_queue<int,vector<int>,greater<int>> pq; //min heap
-        long sum=0;
-        long  res=0;
-        for(int i=0 ;i<perf.size();i++)
+       for(int i=0 ;i<v.size();i++)
         {
-            sum = sum+ perf[i].second;
-			//push the current speed to the pq
-            pq.push(perf[i].second);
-            if(pq.size()>k)
+            
+            
+            sum = sum+v[i].second;
+             
+            q2.push(v[i].second);
+            
+            if(q2.size()>k)
             {
-                //remove the smallest speed
-                sum = sum-pq.top();
-                pq.pop();
+                sum=sum-q2.top();
+                q2.pop();
             }
-			//since eff is the currents small efficiency 
-            res=max(res,sum*perf[i].first);
+           
+            
+            maxi = max(maxi,sum*v[i].first);
         }
-        return res % (int)(1e9+7);
+       return maxi% (int)(1e9+7); 
+      
     
-        
     }
 };
