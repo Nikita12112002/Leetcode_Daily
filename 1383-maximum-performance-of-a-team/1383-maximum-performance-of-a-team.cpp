@@ -9,7 +9,7 @@ public:
         }
         
         //sort the perf in descending order
-        sort(rbegin(perf),rend(perf));
+        sort(perf.rbegin(),perf.rend());
         
         //priority queue to get the smallest sum 
         priority_queue<int,vector<int>,greater<int>> pq; //min heap
