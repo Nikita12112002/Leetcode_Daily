@@ -17,13 +17,13 @@ public:
         long  res=0;
         for(int i=0 ;i<perf.size();i++)
         {
-            sum+=perf[i].second;
+            sum = sum+ perf[i].second;
 			//push the current speed to the pq
             pq.push(perf[i].second);
             if(pq.size()>k)
             {
                 //remove the smallest speed
-                sum-=pq.top();
+                sum = sum-pq.top();
                 pq.pop();
             }
 			//since eff is the currents small efficiency 
