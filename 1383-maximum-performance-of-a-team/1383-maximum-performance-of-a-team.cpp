@@ -1,40 +1,8 @@
 class Solution {
 public:
-    long long mod=10000000007;
     int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
         
-//         priority_queue<pair<long,long>>q;
-//         priority_queue<long,vector<long>,greater<long>>q2;
-        
-//         long sum=0;
-//         long  maxi=0;
-        
-//         for(int i=0;i<n;i++)
-//         {
-//             q.push({efficiency[i],speed[i]});
-//         }
-        
-//         while(!q.empty())
-//         {
-//             auto top = q.top();
-//             q.pop();
-            
-//             sum = sum+top.second;
-             
-//             q2.push(top.second);
-            
-//             if(q2.size()>k)
-//             {
-//                 sum=sum-q2.top();
-//                 q2.pop();
-//             }
-           
-            
-//             maxi = max(maxi,top.first*sum);
-//         }
-//        return maxi% (int)mod; 
-        
-        vector<pair<int,int>> perf(n);
+         vector<pair<int,int>> perf(n);
         for(int i=0;i<n;i++)
         {
             perf[i]={efficiency[i],speed[i]};
@@ -63,5 +31,6 @@ public:
         }
         return res % (int)(1e9+7);
     
+        
     }
 };
