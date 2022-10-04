@@ -11,20 +11,26 @@
  */
 class Solution {
 public:
+    bool dfs(TreeNode* root , int target)
+    {
+        if(root==NULL)
+            return false;
+        
+        if(root->left==NULL && root->right==NULL)
+        {
+            if(target-root->val==0)
+                return true;
+           
+        }
+           
+        
+        return dfs(root->left,target-root->val)||dfs(root->right,target-root->val);
+        
+    }
     bool hasPathSum(TreeNode* root, int targetSum) {
         
         if(root==NULL)
             return false;
-       
-        if(root->left==NULL && root->right==NULL) // done becoz it is mentioned in the question that we need to find the path from leaf to node ...if we got the sone in between before reaching to the leaf node then that path will not be considered
-        {
-        if(targetSum-root->val==0)
-            return true;
-        }
-     return hasPathSum(root->left,targetSum-root->val)||
-        hasPathSum(root->right,targetSum-root->val);
-        
-       
-        
+        return dfs(root,targetSum);
     }
 };
