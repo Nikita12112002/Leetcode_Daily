@@ -8,7 +8,7 @@ public:
             return 1e9 ;
         }  
         
-        if( d <= 0 )    return 1e9 ;
+        if( d == 0 )    return 1e9 ;
         
         if( dp[idx][d] != -1 ) return dp[idx][d] ;
         
