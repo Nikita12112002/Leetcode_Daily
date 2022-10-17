@@ -1,25 +1,21 @@
-// Time Complexity: O(N)
-// Space Complexity: O(1)
 class Solution {
 public:
     string breakPalindrome(string palindrome) {
+        
+        if(palindrome.length()==1)
+            return "";
         int n = palindrome.size();
         
-        if (n == 1) return "";
-        
-      
-        
-        for (int i = 0; i < n / 2; i++) {
-            
-            if (palindrome[i] != 'a') {
-               
-                palindrome[i] = 'a';
-              
+        for(int i=0 ; i<n/2 ;i++)
+        {
+            if(palindrome[i]!='a')
+            {
+                palindrome[i]='a';
                 return palindrome;
+                    
             }
         }
-       
-        palindrome[n - 1] = 'b';
+        palindrome[n-1]='b';
         return palindrome;
     }
 };
