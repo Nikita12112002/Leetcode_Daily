@@ -1,32 +1,43 @@
-#define INF 10000000
 class Solution {
 public:
-    int n;
-    int dp[305][15];
-    int dfs(int i,int d,vector <int> &jd)
-    {
-        if(i==n && d==0) //end of our search with all elements covered and 0 days remaining
-            return 0;
-        if(i==n || d==0 || n-i<d) //if elements are remaining or elements are used up but days are remaining
-            return INF;
-        if(dp[i][d]!=-1) //if already seen this state,return it
-            return dp[i][d];
-        int ans=INF;
-        int maxele=-INF;
-        for(int j=i;j<n;j++)
-        {   
-            maxele=max(maxele,jd[j]); //max element from i to j
-            ans=min(ans,maxele+dfs(j+1,d-1,jd)); //minimum of all possible answers
+    
+    int solve( int idx, int d, vector<int>&job, vector<vector<int>>&dp ){
+        
+        if( idx == job.size() ){
+            if( d == 0 )    return 0 ;
+            return 1e9 ;
+        }  
+        
+        if( d <= 0 )    return 1e9 ;
+        
+        if( dp[idx][d] != -1 ) return dp[idx][d] ;
+        
+        int ans = INT_MAX , maxi = INT_MIN ;
+        
+        for( int i = idx ; i < job.size() ; i++ ){
+            
+            maxi = max( maxi, job[i] ) ;
+			
+            int temp = maxi + solve(i+1, d-1, job, dp) ;
+			
+            ans = min(temp, ans) ;
+			
         }
-        dp[i][d]=ans;
-        return ans;
+        return dp[idx][d] = ans ;
     }
-    int minDifficulty(vector<int>& jobDifficulty, int d) {
-        n=jobDifficulty.size();
-        if(n<d)       //not possible
-            return -1;
-        memset(dp,-1,sizeof(dp));
-        int ans= dfs(0,d,jobDifficulty);
-        return ans;
+    
+    
+    int minDifficulty(vector<int>& job, int d) {
+	
+        int n = job.size() ;
+        
+        vector<vector<int>>dp(n+1, vector<int>(d+1, -1)) ;
+        
+        int ans = solve(0, d, job, dp) ;
+        
+        if( ans >= 1e9 )    return -1 ;
+        
+        return ans ;
+        
     }
 };
