@@ -9,7 +9,7 @@ public:
             // dont change the condition from board[i][j]!='O' to board[i][j]=='X' ... it will work in some cases but in other cases it will fail..because if a cell has already be # then we call for that cell then the base condition should be executed and when it will  check that board[i][j]==X this will become false and base condition will never execute but if we put boars[i][j]!='O' then # will check whether it is not equal to O and this becomes true and base condition will execute otherwise the base condition will never execute and the recursion goes on. 
             return;
         
-        board[i][j]='#';
+        board[i][j]=-1;
         
         dfs(board,i+1,j,n,m);
         dfs(board,i,j-1,n,m);
@@ -50,7 +50,8 @@ public:
             {
                 if(grid[i][j]==1)
                    count++;
-                
+                if(grid[i][j]==-1)
+                    grid[i][j]=1;
             }
         }
         
