@@ -1,6 +1,6 @@
 class Solution {
 public:
-    
+    // same as surrounding regions
     
     void dfs(vector<vector<int>>&board , int i , int j , int n , int m)
     {
