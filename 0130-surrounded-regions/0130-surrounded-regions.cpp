@@ -2,30 +2,30 @@
 class Solution {
 public:
     
-//     void dfs(vector<vector<char>>&board , int i , int j , int n , int m)
-//     {
-//         if(i<0 || j<0 || i>=n || j>=m || board[i][j]=='X')
-//             return;
+    void dfs(vector<vector<char>>&board , int i , int j , int n , int m)
+    {
+        if(i<0 || j<0 || i>=n || j>=m || board[i][j]!='O')
+            return;
         
-//         board[i][j]='#';
+        board[i][j]='#';
         
-//         dfs(board,i+1,j,n,m);
-//         dfs(board,i,j-1,n,m);
-//         dfs(board,i,j+1,n,m);
-//         dfs(board,i-1,j,n,m);
+        dfs(board,i+1,j,n,m);
+        dfs(board,i,j-1,n,m);
+        dfs(board,i,j+1,n,m);
+        dfs(board,i-1,j,n,m);
         
-//         return;
+        return;
             
-//     }
-    
-      void dfs(vector<vector<char>>& board, int i, int j, int m, int n) {
-        if(i<0 or j<0 or i>=m or j>=n or board[i][j] != 'O') return;
-        board[i][j] = '#';
-        dfs(board, i-1, j, m, n);
-        dfs(board, i+1, j, m, n);
-        dfs(board, i, j-1, m, n);
-        dfs(board, i, j+1, m, n);
     }
+    
+    //   void dfs(vector<vector<char>>& board, int i, int j, int m, int n) {
+    //     if(i<0 or j<0 or i>=m or j>=n or board[i][j] != 'O') return;
+    //     board[i][j] = '#';
+    //     dfs(board, i-1, j, m, n);
+    //     dfs(board, i+1, j, m, n);
+    //     dfs(board, i, j-1, m, n);
+    //     dfs(board, i, j+1, m, n);
+    // }
     
     void solve(vector<vector<char>>& board) {
         
