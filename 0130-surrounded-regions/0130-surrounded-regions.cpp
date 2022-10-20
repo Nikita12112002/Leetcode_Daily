@@ -1,10 +1,11 @@
-
 class Solution {
 public:
     
     void dfs(vector<vector<char>>&board , int i , int j , int n , int m)
     {
         if(i<0 || j<0 || i>=n || j>=m || board[i][j]!='O')
+            
+            // dont change the condition from board[i][j]!='O' to board[i][j]=='X' ... it will work in some cases but in other cases it will fail..because if a cell has already be # then we call for that cell then the base condition should be executed and when it will  check that board[i][j]==X this will become false and base condition will never execute but if we put boars[i][j]!='O' then # will check whether it is not equal to O and this becomes true and base condition will execute otherwise the base condition will never execute and the recursion goes on. 
             return;
         
         board[i][j]='#';
