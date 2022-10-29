@@ -8,8 +8,8 @@ public:
         v.push_back({grow[i], plant[i]});
     sort(begin(v), end(v));
     int res = 0;
-    for (auto [g, p] : v)
-        res = max(res, g) + p;
+    for (auto it : v)
+        res = max(res, it.first) + it.second;
     return res;
     }
 };
