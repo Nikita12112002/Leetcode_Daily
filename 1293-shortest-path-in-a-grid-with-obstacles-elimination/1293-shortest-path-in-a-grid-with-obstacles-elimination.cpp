@@ -1,98 +1,95 @@
-class Solution {
-public:
+// class Solution {
+// public:
     
-//     int dfs(vector<vector<int>>&grid , int k  , int i , int j)
+//     int dfs(vector<vector<int>>&grid , int k  , int i , int j,   vector<vector<bool>>&visited)
 //     {
-//         if(grid[i][j]==1)
+//         if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size() ||  visited[i][j])
+//             return 1e9;
+//         else if(i==0 && j==0)
+//             return 0;
+        
+//         else if(grid[i][j]==1)
 //         {
 //             if(k==0)
-//                 return 0;
+//                 return 1e9;
 //             k--;
-//             return 1;
+           
 //         }
         
-//         if(grid[i][j]==2)
-//             return 0;
+       
+//        visited[i][j] = true;
         
-//         if(i<0 || j<0)
-//             return 0;
-//         if(i==0 && j==0)
-//             return 1;
+//         int up = 1+dfs(grid,k,i-1,j,visited);
+//         int down = 1+dfs(grid,k,i+1,j,visited);
+//         int left = 1+dfs(grid,k,i,j-1,visited);
+//         int right = 1+dfs(grid,k,i,j+1,visited);
         
-    
-//         grid[i][j]=2;
-        
-//         int up = dfs(grid,k,i-1,j);
-//         int down = dfs(grid,k,i+1,j);
-//         int left = dfs(grid,k,i,j-1);
-//         int right = dfs(grid,k,i,j+1);
-        
-//         int ans1=min(up,down);
-//         int ans2 = min(left,right);
-        
-//         return min(ans1,ans2);
+//        visited[i][j] = false;
+//       return min(up, min(down, min(left, right)));
 //     }
 //     int shortestPath(vector<vector<int>>& grid, int k) {
         
 //         int n = grid.size();
 //         int m = grid[0].size();
         
-     
-//         int res = dfs(grid,k,n-1,m-1);
+//        vector<vector<bool>> visited(m, vector<bool>(n, false));
+//         int res = dfs(grid,k,n-1,m-1,visited);
         
-//         if(res!=0)
-//             return res;
-//         return -1;
+//         if(res >= 1e9)
+//             return -1;
+//         return res;
+//     }
             
+
+// };
+
+
+
+
+class Solution {
+public:
     int shortestPath(vector<vector<int>>& grid, int k) {
         int m = grid.size();
         int n = grid[0].size();
-        // This vector stores the number of obstacles that we can still remove after walking through that cell
-        vector<vector<int>> visited(m, vector<int>(n, -1));
-        
-        queue<vector<int>> q;
-        // x, y, currentLength, remaining k
-        q.push({0,0,0,k});
-        while(!q.empty()){
-            
-            auto t = q.front();
-            q.pop();
-            
-            int x = t[0], y = t[1];
-            
-            // Invalid cases being dealt here since it's easier to write one condition instead of 4 while pushing.
-            if(x<0 || x>=m || y<0 || y>=n)
-                continue;
-            
-            // If you've reached the end, great, return the currentLength!
-            if(x == m-1 && y == n-1)
-                return t[2]; //currentLength of the path
-             
-            // If we hit an obstacle & we don't have any Ks remaining, continue
-            // If we still have Ks to spend, we spend 1.
-            if(grid[x][y] == 1){
-                if(t[3] > 0)
-                    t[3]--;
-                else
-                    continue;
-            }
-            
-            // If this cell is already visited with a K value lesser than this one, we would want to save Ks for future use, so we continue
-            // This is the most important condition and part of the solution!
-            if(visited[x][y]!=-1 && visited[x][y] >= t[3]){
-                continue;
-            }
-            
-            // We store the currentRemaining K after spending K (if required) into the visited matrix.
-            visited[x][y] = t[3];
-                
-            // Push the adjacent nodes in the queue.
-            q.push({x+1, y, t[2]+1, t[3]});
-            q.push({x-1, y, t[2]+1, t[3]});
-            q.push({x, y+1, t[2]+1, t[3]});
-            q.push({x, y-1, t[2]+1, t[3]});
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        vector<vector<vector<int>>> dp(m, vector<vector<int>>(n, vector<int>(k+1, -1)));
+        int ans = path(grid, k, m-1, n-1,visited, dp);
+        if(ans >= m*n)
+            return -1;
+        return ans;
+    }
+
+    int path(vector<vector<int>>& grid, int k, int r, int c,vector<vector<bool>>& visited, vector<vector<vector<int>>>& dp){
+        int m = grid.size();
+        int n = grid[0].size();
+
+        if(r >= m || c >= n || r < 0 || c < 0 || visited[r][c]){
+            return 1e6;
+        }
+
+        if(dp[r][c][k] != -1){
+            return dp[r][c][k];
         }
         
-        return -1;
+        if(r == 0 && c == 0){
+            return dp[r][c][k] = 0;
+        }
+
+        if(grid[r][c]){
+            if(k == 0){
+                return dp[r][c][k] = 1e6;
+            }
+            else{
+                k--;
+            }
+        }
+        visited[r][c] = true;
+        int top = 1+path(grid, k, r-1, c,visited, dp);
+        int left = 1+path(grid, k, r, c-1,visited, dp);
+        int down = 1+path(grid, k, r+1, c,visited, dp);
+        int right = 1+path(grid, k, r, c+1,visited, dp);
+        visited[r][c] = false;
+
+        return dp[r][c][k] = min(top, min(left, min(right, down)));
     }
 };
