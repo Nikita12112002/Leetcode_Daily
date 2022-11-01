@@ -22,13 +22,13 @@ public:
         
        
         visited[i][j]=true;
-         int top = 1+dfs(grid, k, i-1, j,dp,visited);
-        int left = 1+dfs(grid, k, i, j-1,dp,visited);
-        int down = 1+dfs(grid, k, i+1, j,dp,visited);
-        int right = 1+dfs(grid, k, i, j+1,dp,visited);
+         int top = dfs(grid, k, i-1, j,dp,visited);
+        int left = dfs(grid, k, i, j-1,dp,visited);
+        int down = dfs(grid, k, i+1, j,dp,visited);
+        int right = dfs(grid, k, i, j+1,dp,visited);
         visited[i][j] = false;
 
-        return dp[i][j][k] = min(top, min(left, min(right, down)));
+        return dp[i][j][k] = 1+min(top, min(left, min(right, down)));
     }
     int shortestPath(vector<vector<int>>& grid, int k) {
         
